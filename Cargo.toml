@@ -4,7 +4,7 @@ description = "A BLE Heart Rate Monitor bridge for Social VR, OBS, Data Logging,
 keywords = ["ble", "osc", "vrchat", "tui"]
 categories = ["command-line-utilities", "visualization"]
 repository = "https://github.com/nullstalgia/null-iron-heart"
-version = "0.2.0"
+version = "0.2.1-pre.0"
 edition = "2021"
 default-run = "iron-heart"
 license = "MIT"
@@ -21,7 +21,7 @@ tokio = { version = "1", features = ["full"] }
 crossterm = { version = "0.28", features = ["event-stream"] }
 futures = "0.3"
 chrono = "0.4"
-uuid = "1.6"
+uuid = "1"
 lazy_static = "1.4.0"
 config = "0.14.0"
 serde = "1.0.204"
@@ -69,6 +69,7 @@ tracing-subscriber = { version = "0.3.18", features = ["env-filter", "chrono"] }
 tracing-appender = "0.2"
 tracing-log = "0.2.0"
 rolling-file = "0.2.0"
+# btuuid = { version = "0.1.0", features = ["uuid"] }
 # console-subscriber = "0.4.0"
 
 [target.'cfg(windows)'.dependencies]
@@ -88,6 +89,18 @@ self_update = { version = "0.41.0", features = ["compression-flate2"] }
 
 [target.'cfg(windows)'.build-dependencies]
 embed-resource = "1.4"
+
+# For Raspi 1B via `cross`
+[target.arm-unknown-linux-gnueabihf.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
+
+# For Raspi 2-4
+[target.armv7-unknown-linux-gnueabihf.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
+
+# For Raspi 2-4 (64-bit)
+[target.aarch64-unknown-linux-gnu.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
 
 [dev-dependencies]
 tokio-tungstenite = "*"

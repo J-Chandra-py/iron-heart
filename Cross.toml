@@ -1,0 +1,24 @@
+# For Pi 1B, ARM v6 + Hard Float
+[target.arm-unknown-linux-gnueabihf]
+pre-build = [
+    # So a lot of Debian packages on this target incorrectly build for
+    # ARM v7, which can cause some illegal operations.
+    # But when testing it, it *seems* fine, but egh. I'd like something more graceful.
+    "rm /etc/apt/preferences.d/all-packages",
+    "dpkg --add-architecture $CROSS_DEB_ARCH",
+    "apt-get update && apt-get --assume-yes install --no-install-recommends libdbus-1-dev:$CROSS_DEB_ARCH",
+]
+
+# For Raspi 2-4
+[target.armv7-unknown-linux-gnueabihf]
+pre-build = [
+    "dpkg --add-architecture $CROSS_DEB_ARCH",
+    "apt-get update && apt-get --assume-yes install --no-install-recommends libdbus-1-dev:$CROSS_DEB_ARCH",
+]
+
+# For Raspi 2-4 (64-bit)
+[target.aarch64-unknown-linux-gnu]
+pre-build = [
+    "dpkg --add-architecture $CROSS_DEB_ARCH",
+    "apt-get update && apt-get --assume-yes install --no-install-recommends libdbus-1-dev:$CROSS_DEB_ARCH",
+]
