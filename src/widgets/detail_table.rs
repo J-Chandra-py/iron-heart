@@ -6,7 +6,7 @@ use ratatui::{
 use crate::{structs::DeviceInfo, utils::extract_manufacturer_data};
 
 /// Creates a table with more detailed information about a selected device.
-pub fn detail_table(selected_device: &DeviceInfo) -> Table {
+pub fn detail_table(selected_device: &DeviceInfo) -> Table<'_> {
     let services_binding = selected_device.services.len().to_string();
     let manufacturer_data = extract_manufacturer_data(&selected_device.manufacturer_data);
     let table = Table::new(

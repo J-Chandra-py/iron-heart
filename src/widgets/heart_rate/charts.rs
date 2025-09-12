@@ -33,7 +33,7 @@ fn legend_rect(width: u16, height: u16, graph_area: Rect) -> Rect {
     }
 }
 
-fn bpm_rr_legend(chart_type: &ChartType, graph_area: Rect) -> (Paragraph, Rect) {
+fn bpm_rr_legend(chart_type: &ChartType, graph_area: Rect) -> (Paragraph<'_>, Rect) {
     let text = match chart_type {
         ChartType::Combined => {
             vec![
@@ -63,7 +63,7 @@ fn bpm_rr_legend(chart_type: &ChartType, graph_area: Rect) -> (Paragraph, Rect) 
     (legend_block, legend_area)
 }
 
-fn styled_label(bpm: f64, rr: f64, chart_type: &ChartType, allow_space: bool) -> Line {
+fn styled_label(bpm: f64, rr: f64, chart_type: &ChartType, allow_space: bool) -> Line<'_> {
     let bpm_label_style = (Color::LightRed, Modifier::BOLD);
     let rr_label_style = (Color::LightBlue, Modifier::BOLD);
     let rr = format!("({rr:.1})");

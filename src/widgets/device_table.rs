@@ -7,7 +7,7 @@ use ratatui::{
 use crate::{structs::DeviceInfo, utils::extract_manufacturer_data};
 
 /// Creates a table with the detected BTLE devices.
-pub fn device_table(selected: Option<usize>, devices: &[DeviceInfo]) -> Table {
+pub fn device_table(selected: Option<usize>, devices: &[DeviceInfo]) -> Table<'_> {
     let selected_style = Style::default().add_modifier(Modifier::REVERSED);
     let rows: Vec<Row> = devices
         .iter()
