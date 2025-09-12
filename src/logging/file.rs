@@ -141,7 +141,7 @@ impl FileLoggingActor {
             .unwrap_or(&self.last_rr);
 
         if let Some(csv_writer) = &mut self.csv_writer {
-            let timestamp = heart_rate_status.timestamp.format("%Y-%m-%d %H:%M:%S%.3f");
+            let timestamp = heart_rate_status.timestamp.format("%Y-%m-%d %H:%M:%S%.6f");
             let csv_data = CsvData {
                 Timestamp: timestamp.to_string(),
                 BPM: heart_rate_status.heart_rate_bpm,
